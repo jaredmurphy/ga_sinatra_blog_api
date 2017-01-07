@@ -1,0 +1,16 @@
+<h1> Documentation </h1>
+
+<p> The database is set up with a single table, posts. Posts have an id, title, body, and username associated with them. </p>
+
+<p> All requests must include the username in the route. This is a very simple form of authentication that allows users to only have access to their own blog posts. Try to use a unique name. The username will be created upon it's first use.  </p>
+
+<h4> To access the database through the API, please use the following example routes: </h4>
+
+<span> GET - "/api/posts/mance_rayder" - no params</span>
+<br/>
+<br/>
+
+<span> POST - "/api/posts/mance_rayder" - <br/> title: "New Year's Resolutions - 2017", <br/> body: "I'm going to light the biggest fire the North has ever seen!" </span>
+
+<p> You will receive a response with the id of the post that was just created </p>
+

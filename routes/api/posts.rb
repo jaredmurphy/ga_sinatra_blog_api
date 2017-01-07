@@ -17,6 +17,9 @@ class ApiBlog < Sinatra::Base
       update_post.to_json
     end
 
+    delete "/posts/:id/:username" do
+      delete_post
+    end
 
   end # namespace api
 end # class ApiBlog

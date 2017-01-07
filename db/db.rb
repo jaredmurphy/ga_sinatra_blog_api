@@ -20,6 +20,11 @@ module DB
     conn.exec("UPDATE posts SET title = $1, body = $2 WHERE username = $3 AND id = $4 RETURNING id", [title, body, username, id]).to_a
   end
 
+  def delete_post
+    username, id = params.values_at(:username, :id)
+    post = conn.exec("DELETE FROM posts WHERE username = $1 AND id = $2", [username, id]).to_a
+  end
+
   private
 
   def conn

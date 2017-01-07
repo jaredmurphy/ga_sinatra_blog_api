@@ -1,4 +1,4 @@
-
+ 
 require "json"
 require "open-uri"
 require "pry"
@@ -12,6 +12,7 @@ class ApiBlog < Sinatra::Base
 end
 
 require_relative "routes/api/posts"
+require_relative "routes/home"
 require_relative "db/db"
 
 ApiBlog.helpers DB 
