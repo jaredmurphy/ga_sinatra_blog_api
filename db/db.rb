@@ -2,15 +2,22 @@ module DB
   require('pg')
 
   def get_all_posts
-    conn.exec("SELECT * FROM posts WHERE username = $1", [params[:username]]).to_a
+    conn.exec("SELECT id, username, title, body FROM posts WHERE username = $1", [params[:username]]).to_a
   end
 
   def get_one_post
     id, username = params.values_at(:id, :username)
-    conn.exec("SELECT * FROM posts WHERE username = $1 AND id = $2", [username, id]).to_a
+    conn.exec("SELECT id, username, title, body FROM posts WHERE username = $1 AND id = $2", [username, id]).to_a
   end
 
+  def create_post
+    title, body, username = params.values_at(:title, :body, :username)
+    conn.exec("INSERT INTO posts (title, body, username) VALUES ($1, $2, $3) RETURNING id", [title, body, username]).to_a
+  end
+
+
   private
+
   def conn
     if ENV["RACK_ENV"] == 'production'
       @@conn ||= PG.connect(

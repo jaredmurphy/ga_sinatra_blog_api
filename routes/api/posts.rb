@@ -7,6 +7,11 @@ class ApiBlog < Sinatra::Base
     get "/posts/:id/:username" do 
       get_one_post.to_json
     end
-  end
-end
+
+    post "/posts" do
+      create_post.to_json
+    end
+
+  end # namespace api
+end # class ApiBlog
     
