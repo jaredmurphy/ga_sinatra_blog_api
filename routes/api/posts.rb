@@ -8,9 +8,15 @@ class ApiBlog < Sinatra::Base
       get_one_post.to_json
     end
 
-    post "/posts" do
+    post "/posts/:username" do
       create_post.to_json
     end
+
+    post "/posts/:id/:username" do
+      puts params
+      update_post.to_json
+    end
+
 
   end # namespace api
 end # class ApiBlog

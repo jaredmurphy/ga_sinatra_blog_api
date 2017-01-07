@@ -15,6 +15,10 @@ module DB
     conn.exec("INSERT INTO posts (title, body, username) VALUES ($1, $2, $3) RETURNING id", [title, body, username]).to_a
   end
 
+  def update_post
+    id, title, body, username = params.values_at(:id, :title, :body, :username)
+    conn.exec("UPDATE posts SET title = $1, body = $2 WHERE username = $3 AND id = $4 RETURNING id", [title, body, username, id]).to_a
+  end
 
   private
 
@@ -30,4 +34,4 @@ module DB
       @@conn ||= PG.connect(dbname: "blog_api_db")
     end
   end
-end
+end # module DB
